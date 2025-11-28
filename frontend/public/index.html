@@ -1,0 +1,956 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Steam - [Naman Vyas]</title>
+        <!-- Tailwind CSS -->
+        <script src="https://cdn.tailwindcss.com"></script>
+
+        <style>
+            /* --- STEAM v1 / VGUI AESTHETIC --- */
+
+            :root {
+                --steam-olive-light: #5e6d4b;
+                --steam-olive-main: #4b5844;
+                --steam-olive-dark: #3e4637;
+                --steam-bg-dark: #2a2e25;
+                --steam-text: #c0c6b1;
+                --steam-text-yellow: #d5cc6e; /* Classic GoldSource yellow */
+                --steam-border-light: #6f7d5e;
+                --steam-border-dark: #252920;
+                --console-bg: #000000d0;
+            }
+
+            body {
+                background-color: var(--steam-olive-dark);
+                color: var(--steam-text);
+                font-family:
+                    "Verdana", sans-serif; /* The quintessential Steam font */
+                font-size: 11px; /* Authentic small UI font size */
+                cursor: crosshair; /* CS 1.6 style */
+                overflow-x: hidden;
+            }
+
+            /* --- VGUI PANEL STYLES --- */
+            .vgui-panel {
+                background-color: var(--steam-olive-main);
+                border: 1px solid;
+                border-color: var(--steam-border-light) var(--steam-border-dark)
+                    var(--steam-border-dark) var(--steam-border-light);
+                padding: 2px;
+            }
+
+            .vgui-inset {
+                background-color: var(--steam-bg-dark);
+                border: 1px solid;
+                border-color: var(--steam-border-dark) var(--steam-border-light)
+                    var(--steam-border-light) var(--steam-border-dark);
+            }
+
+            .vgui-header {
+                background-color: #353b2f;
+                color: #d1cfcd;
+                padding: 4px 8px;
+                font-weight: bold;
+                font-size: 12px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                border-bottom: 1px solid var(--steam-border-dark);
+            }
+
+            /* --- BUTTONS (STEAM STYLE) --- */
+            .steam-btn {
+                background-color: #465139;
+                color: #d8d8d8;
+                border: 1px solid;
+                border-color: #6a7857 #2d3326 #2d3326 #6a7857;
+                padding: 4px 12px;
+                font-family: "Verdana", sans-serif;
+                font-size: 11px;
+                cursor: pointer;
+                text-align: left;
+                transition: none;
+            }
+
+            .steam-btn:hover {
+                background-color: #556145;
+                color: white;
+            }
+
+            .steam-btn:active,
+            .steam-btn.active {
+                background-color: #38402e;
+                border-color: #2d3326 #6a7857 #6a7857 #2d3326;
+                color: var(--steam-text-yellow);
+            }
+
+            /* --- CONSOLE LOG STYLE --- */
+            .console-text {
+                font-family: "Lucida Console", "Courier New", monospace;
+                color: var(--steam-text-yellow);
+                text-shadow: 1px 1px 0 #000;
+            }
+
+            /* --- SCROLLBARS --- */
+            ::-webkit-scrollbar {
+                width: 12px;
+            }
+            ::-webkit-scrollbar-track {
+                background: var(--steam-bg-dark);
+            }
+            ::-webkit-scrollbar-thumb {
+                background: var(--steam-olive-light);
+                border: 1px solid var(--steam-bg-dark);
+            }
+
+            /* --- TABS --- */
+            .tab-content {
+                display: none;
+            }
+            .tab-content.active {
+                display: block;
+            }
+
+            input,
+            textarea {
+                background-color: #242820;
+                border: 1px solid #666;
+                color: #ddd;
+                font-family: "Verdana", sans-serif;
+                font-size: 11px;
+            }
+            input:focus,
+            textarea:focus {
+                outline: 1px solid var(--steam-text-yellow);
+                border-color: var(--steam-text-yellow);
+            }
+
+            .blink {
+                animation: blink-anim 1s step-end infinite;
+            }
+            @keyframes blink-anim {
+                50% {
+                    opacity: 0;
+                }
+            }
+
+            /* --- BULLET HOLE EFFECT --- */
+            .bullet-hole {
+                position: absolute;
+                width: 6px;
+                height: 6px;
+                background-color: #1a1a1a;
+                border: 1px solid #555;
+                border-radius: 50%;
+                pointer-events: none;
+                z-index: 9999;
+                box-shadow:
+                    0 0 2px rgba(255, 255, 255, 0.3),
+                    inset 0 0 2px #000;
+                animation: fadeOut 3s forwards;
+            }
+
+            @keyframes fadeOut {
+                0% {
+                    opacity: 0.8;
+                    transform: scale(1);
+                }
+                100% {
+                    opacity: 0;
+                    transform: scale(1.5);
+                }
+            }
+
+            /* --- INFINITE MARQUEE ANIMATION --- */
+            .marquee-wrapper {
+                display: flex;
+                overflow: hidden;
+                width: 100%;
+            }
+
+            .marquee-text {
+                white-space: nowrap;
+                animation: scroll-left 15s linear infinite;
+                /* Flex-shrink 0 ensures the text doesn't wrap/squish */
+                flex-shrink: 0;
+                padding-right: 2rem; /* Spacing between the duplicate */
+            }
+
+            @keyframes scroll-left {
+                0% {
+                    transform: translateX(0);
+                }
+                100% {
+                    transform: translateX(-100%);
+                }
+            }
+
+            /* --- OLD MARQUEE (Keeping for music player compatibility) --- */
+            .marquee-container {
+                overflow: hidden;
+                white-space: nowrap;
+                display: block;
+            }
+            .marquee-content {
+                display: inline-block;
+                animation: marquee 15s linear infinite;
+                padding-left: 100%;
+            }
+            @keyframes marquee {
+                0% {
+                    transform: translateX(0);
+                }
+                100% {
+                    transform: translateX(-100%);
+                }
+            }
+        </style>
+    </head>
+    <body class="min-h-screen p-4 md:p-8">
+        <!-- TOP WARNING MARQUEE (UPDATED FOR INFINITE LOOP) -->
+        <div
+            class="w-full bg-black border-b-2 border-[#5e6d4b] mb-6 shadow-lg relative z-20 overflow-hidden"
+        >
+            <div class="marquee-wrapper">
+                <!-- First Copy -->
+                <div
+                    class="marquee-text text-[#00ff00] font-mono text-xl font-bold uppercase tracking-widest"
+                    style="text-shadow: 0 0 5px #00ff00"
+                >
+                    ⚠️ This is not made for mobile!!! Quit being a momo and
+                    visit the web on a bloody computer like a DOCKTA!!! ⚠️
+                </div>
+                <!-- Second Copy (For seamless loop) -->
+                <div
+                    class="marquee-text text-[#00ff00] font-mono text-xl font-bold uppercase tracking-widest"
+                    style="text-shadow: 0 0 5px #00ff00"
+                >
+                    ⚠️ This is not made for mobile!!! Quit being a momo and
+                    visit the web on a bloody computer like a DOCKTA!!! ⚠️
+                </div>
+                <!-- Third Copy (Extra buffer for wide screens) -->
+                <div
+                    class="marquee-text text-[#00ff00] font-mono text-xl font-bold uppercase tracking-widest"
+                    style="text-shadow: 0 0 5px #00ff00"
+                >
+                    ⚠️ This is not made for mobile!!! Quit being a momo and
+                    visit the web on a bloody computer like a DOCKTA!!! ⚠️
+                </div>
+                <!-- Fourth Copy (Safety buffer) -->
+                <div
+                    class="marquee-text text-[#00ff00] font-mono text-xl font-bold uppercase tracking-widest"
+                    style="text-shadow: 0 0 5px #00ff00"
+                >
+                    ⚠️ This is not made for mobile!!! Quit being a momo and
+                    visit the web on a bloody computer like a DOCKTA!!! ⚠️
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Container -->
+        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-4">
+            <!-- === LEFT SIDEBAR (STEAM FRIEND/SERVER LIST STYLE) === -->
+            <div class="md:col-span-3 space-y-4">
+                <!-- PROFILE CARD -->
+                <div class="vgui-panel">
+                    <div class="vgui-header">
+                        <span>Current Player</span>
+                        <span class="text-[10px] text-gray-400">ONLINE</span>
+                    </div>
+                    <div class="p-2 flex flex-col items-center space-y-3">
+                        <div
+                            class="w-20 h-20 border-2 border-[#666] relative bg-[#222]"
+                        >
+                            <img
+                                src="../public/assets/images/FvTDdrZX0AENGZb.jpeg"
+                                alt="avatar"
+                                class="w-full h-full object-cover opacity-80"
+                            />
+                            <!-- VAC BAN BADGE -->
+                            <div
+                                class="absolute -bottom-2 -right-2 bg-red-800 text-white text-[9px] px-1 border border-black font-bold"
+                            >
+                                VAC
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <h2
+                                class="text-[#d5cc6e] font-bold text-lg leading-none"
+                            >
+                                Naman Vyas
+                            </h2>
+                            <div class="text-[10px] text-gray-400 mt-1">
+                                Steam ID: 0:1:1337420
+                            </div>
+                        </div>
+
+                        <div
+                            class="w-full vgui-inset p-2 text-[10px] space-y-1 font-mono"
+                        >
+                            <div class="flex justify-between">
+                                <span>Status:</span>
+                                <span class="text-green-500">In-Game</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Game:</span>
+                                <span class="text-[#d5cc6e]"
+                                    >Backend Dev @ middleware.io</span
+                                >
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Time:</span> <span>3360 hrs</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- NAVIGATION (SERVER BROWSER TABS) -->
+                <div class="vgui-panel">
+                    <div class="vgui-header">
+                        <span>Server Browser</span>
+                        <button
+                            class="w-3 h-3 bg-[#444] text-[8px] flex items-center justify-center leading-none"
+                        >
+                            x
+                        </button>
+                    </div>
+                    <div class="p-1 space-y-1">
+                        <button
+                            onclick="navigate('home')"
+                            id="btn-home"
+                            class="steam-btn w-full active"
+                        >
+                            Favorites
+                        </button>
+                        <button
+                            onclick="navigate('about')"
+                            id="btn-about"
+                            class="steam-btn w-full"
+                        >
+                            Spectate Info
+                        </button>
+                        <button
+                            onclick="navigate('gallery')"
+                            id="btn-gallery"
+                            class="steam-btn w-full"
+                        >
+                            Screenshots
+                        </button>
+                        <button
+                            onclick="navigate('links')"
+                            id="btn-links"
+                            class="steam-btn w-full"
+                        >
+                            Internet Games
+                        </button>
+                        <button
+                            onclick="navigate('guestbook')"
+                            id="btn-guestbook"
+                            class="steam-btn w-full"
+                        >
+                            Chat Logs
+                        </button>
+                    </div>
+                </div>
+
+                <!-- FRIENDS LIST -->
+                <div class="vgui-panel h-64 flex flex-col">
+                    <div class="vgui-header">
+                        <span>Friends</span>
+                        <span class="text-[9px]">3 Online</span>
+                    </div>
+                    <div
+                        class="vgui-inset flex-1 overflow-y-auto p-1 space-y-1 text-[10px]"
+                    >
+                        <div
+                            class="flex items-center gap-2 text-[#a3b9cc] hover:bg-[#4b5844] cursor-pointer p-1"
+                        >
+                            <div
+                                class="w-2 h-2 bg-green-500 rounded-full shadow-[0_0_4px_#0f0]"
+                            ></div>
+                            <span>Gorden_F</span>
+                            <span class="ml-auto text-gray-500"
+                                >- cs_office</span
+                            >
+                        </div>
+                        <div
+                            class="flex items-center gap-2 text-[#a3b9cc] hover:bg-[#4b5844] cursor-pointer p-1"
+                        >
+                            <div
+                                class="w-2 h-2 bg-green-500 rounded-full shadow-[0_0_4px_#0f0]"
+                            ></div>
+                            <span>AlyxV</span>
+                            <span class="ml-auto text-gray-500"
+                                >- d2_coast</span
+                            >
+                        </div>
+                        <div
+                            class="flex items-center gap-2 text-[#a3b9cc] hover:bg-[#4b5844] cursor-pointer p-1"
+                        >
+                            <div class="w-2 h-2 bg-blue-400 rounded-full"></div>
+                            <span>GMan</span>
+                            <span class="ml-auto text-gray-500">Snoozing</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-gray-500 p-1">
+                            <div class="w-2 h-2 bg-gray-600 rounded-full"></div>
+                            <span>Barney</span>
+                            <span class="ml-auto">Offline</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- === CENTER CONTENT (CONSOLE / MAIN WINDOW) === -->
+            <div class="md:col-span-6 flex flex-col gap-4">
+                <!-- CONSOLE HEADER -->
+                <div
+                    class="bg-[#2a2e25] border-t-2 border-[#4b5844] p-2 font-mono text-xs text-[#d5cc6e]"
+                >
+                    ] connect <span class="text-white">naman47vyas.lol</span
+                    ><br />
+                    <span class="text-gray-400">Connection accepted.</span>
+                </div>
+
+                <!-- MAIN CONTENT WINDOW -->
+                <div class="vgui-panel flex-1 min-h-[500px] flex flex-col">
+                    <div class="vgui-header">
+                        <span id="window-title"
+                            >Counter-Strike Source - /home</span
+                        >
+                        <div class="flex gap-1">
+                            <div class="w-3 h-3 border border-gray-500"></div>
+                            <div
+                                class="w-3 h-3 border border-gray-500 bg-gray-600"
+                            ></div>
+                        </div>
+                    </div>
+
+                    <!-- CONTENT BODY -->
+                    <div
+                        class="vgui-inset flex-1 m-2 p-4 overflow-y-auto text-[#d1cfcd]"
+                    >
+                        <!-- TAB: HOME -->
+                        <div
+                            id="content-home"
+                            class="tab-content active space-y-6"
+                        >
+                            <div
+                                class="border border-[#d5cc6e] bg-[#2a2e25] p-3"
+                            >
+                                <h3
+                                    class="font-bold text-[#d5cc6e] text-sm flex items-center gap-2"
+                                >
+                                    <span class="animate-pulse">⚠️</span> SERVER
+                                    MESSAGE OF THE DAY
+                                </h3>
+                                <div class="h-px bg-[#4b5844] my-2"></div>
+                                <p class="text-[11px]">
+                                    This is the home of Naman Vyas, on the
+                                    internet. Please be advised, this is
+                                    underconstruction.<br />
+                                    Latest update: 11/26/2025 - Fixed CSS
+                                    rendering bugs.
+                                </p>
+                            </div>
+
+                            <div class="text-center py-8">
+                                <h1
+                                    class="text-4xl font-black text-[#5e6d4b] tracking-tighter"
+                                    style="text-shadow: 2px 2px 0px #000"
+                                >
+                                    WELCOME TO THE SERVER
+                                </h1>
+                                <div
+                                    class="mt-2 text-[#d5cc6e] font-mono text-xs"
+                                >
+                                    Map:
+                                    <span class="text-white">de_dust2</span> |
+                                    Players:
+                                    <span class="text-white">1/32</span> | Ping:
+                                    <span class="text-white">5ms</span>
+                                </div>
+                            </div>
+
+                            <!-- NEWS FEED -->
+                            <div class="space-y-2">
+                                <div
+                                    class="bg-[#2d3326] p-2 border border-[#3e4637]"
+                                >
+                                    <div
+                                        class="text-[#99ccff] font-bold text-xs mb-1"
+                                    >
+                                        Update #42
+                                    </div>
+                                    <p class="text-[10px] text-gray-300">
+                                        Added support for new Half-Life 3
+                                        rumors. Still unconfirmed.
+                                    </p>
+                                </div>
+                                <div
+                                    class="bg-[#2d3326] p-2 border border-[#3e4637]"
+                                >
+                                    <div
+                                        class="text-[#99ccff] font-bold text-xs mb-1"
+                                    >
+                                        Config Loaded
+                                    </div>
+                                    <p class="text-[10px] text-gray-300">
+                                        autoexec.cfg executed successfully.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- TAB: ABOUT -->
+                        <div id="content-about" class="tab-content">
+                            <h2
+                                class="text-lg font-bold text-[#d5cc6e] mb-4 border-b border-[#4b5844] pb-1"
+                            >
+                                Player_Stats
+                            </h2>
+                            <div class="flex gap-4">
+                                <div
+                                    class="w-32 h-40 bg-black border border-gray-600 flex items-center justify-center"
+                                >
+                                    <span
+                                        class="text-[#d5cc6e] font-mono text-center text-xs"
+                                        >Model:<br />gordon.mdl</span
+                                    >
+                                </div>
+                                <div class="flex-1 space-y-2 font-mono text-xs">
+                                    <div
+                                        class="flex border-b border-[#3e4637] pb-1"
+                                    >
+                                        <span class="w-24 text-gray-500"
+                                            >Name:</span
+                                        >
+                                        <span class="text-white">Admin</span>
+                                    </div>
+                                    <div
+                                        class="flex border-b border-[#3e4637] pb-1"
+                                    >
+                                        <span class="w-24 text-gray-500"
+                                            >Class:</span
+                                        >
+                                        <span class="text-white"
+                                            >Web Developer</span
+                                        >
+                                    </div>
+                                    <div
+                                        class="flex border-b border-[#3e4637] pb-1"
+                                    >
+                                        <span class="w-24 text-gray-500"
+                                            >Weapon:</span
+                                        >
+                                        <span class="text-white"
+                                            >Keyboard + Mouse</span
+                                        >
+                                    </div>
+                                    <div
+                                        class="bg-[#2a2e25] p-2 mt-4 text-[10px] border border-[#d5cc6e] text-[#d5cc6e]"
+                                    >
+                                        "I grew up on LAN parties and CRT
+                                        monitors. This site is a tribute to the
+                                        golden age of PC gaming."
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- TAB: GALLERY -->
+                        <div id="content-gallery" class="tab-content">
+                            <div
+                                class="bg-black p-1 border border-gray-600 mb-2 text-center text-xs text-gray-400"
+                            >
+                                Viewing screenshots/ (6 files)
+                            </div>
+                            <div class="grid grid-cols-2 gap-2">
+                                <!-- JS generated placeholders -->
+                                <script>
+                                    for (let i = 1; i <= 4; i++) {
+                                        document.write(`
+                                        <div class="aspect-video bg-[#111] border border-[#333] flex flex-col items-center justify-center group cursor-pointer hover:border-[#d5cc6e]">
+                                            <span class="text-xs text-gray-500 group-hover:text-[#d5cc6e]">de_map0${i}.jpg</span>
+                                        </div>
+                                    `);
+                                    }
+                                </script>
+                            </div>
+                        </div>
+
+                        <!-- TAB: LINKS (INTERNET GAMES) -->
+                        <div id="content-links" class="tab-content">
+                            <table
+                                class="w-full text-left text-[10px] border-collapse"
+                            >
+                                <thead>
+                                    <tr class="bg-[#3e4637] text-[#d5cc6e]">
+                                        <th class="p-1 border border-[#222]">
+                                            Hostname
+                                        </th>
+                                        <th class="p-1 border border-[#222]">
+                                            Map
+                                        </th>
+                                        <th class="p-1 border border-[#222]">
+                                            Latency
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody class="font-mono text-gray-300">
+                                    <tr
+                                        class="hover:bg-[#4b5844] cursor-pointer"
+                                        onclick="window.open('#', '_blank')"
+                                    >
+                                        <td class="p-1 border border-[#222]">
+                                            Valve Software
+                                        </td>
+                                        <td class="p-1 border border-[#222]">
+                                            www.valvesoftware.com
+                                        </td>
+                                        <td class="p-1 border border-[#222]">
+                                            5ms
+                                        </td>
+                                    </tr>
+                                    <tr
+                                        class="hover:bg-[#4b5844] cursor-pointer"
+                                        onclick="window.open('#', '_blank')"
+                                    >
+                                        <td class="p-1 border border-[#222]">
+                                            Steam Powered
+                                        </td>
+                                        <td class="p-1 border border-[#222]">
+                                            store.steampowered.com
+                                        </td>
+                                        <td class="p-1 border border-[#222]">
+                                            12ms
+                                        </td>
+                                    </tr>
+                                    <tr
+                                        class="hover:bg-[#4b5844] cursor-pointer"
+                                        onclick="window.open('#', '_blank')"
+                                    >
+                                        <td class="p-1 border border-[#222]">
+                                            GameBanana
+                                        </td>
+                                        <td class="p-1 border border-[#222]">
+                                            css_skins
+                                        </td>
+                                        <td class="p-1 border border-[#222]">
+                                            45ms
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- TAB: GUESTBOOK (CHAT LOG) -->
+                        <div
+                            id="content-guestbook"
+                            class="tab-content h-full flex flex-col"
+                        >
+                            <div
+                                class="flex-1 bg-[#222] border border-[#444] p-2 font-mono text-[10px] overflow-y-auto mb-2"
+                                style="font-family: &quot;Lucida Console&quot;"
+                            >
+                                <div class="mb-1">
+                                    <span class="text-[#d5cc6e]">Player1:</span>
+                                    nice site m8
+                                </div>
+                                <div class="mb-1">
+                                    <span class="text-blue-400">CT_Force:</span>
+                                    where is the bomb?
+                                </div>
+                                <div class="mb-1">
+                                    <span class="text-[#d5cc6e]">Player1:</span>
+                                    its at B
+                                </div>
+                                <div class="mb-1">
+                                    <span class="text-red-400">T_Terror:</span>
+                                    Rush B cyka blyat
+                                </div>
+                                <div class="text-gray-500 italic">
+                                    --- Previous messages cleared ---
+                                </div>
+                            </div>
+
+                            <form
+                                onsubmit="handleGuestbook(event)"
+                                class="flex gap-2 bg-[#3e4637] p-1 border border-[#222]"
+                            >
+                                <span
+                                    class="text-[#d5cc6e] font-bold text-xs pt-1"
+                                    >Say:</span
+                                >
+                                <input
+                                    type="text"
+                                    class="flex-1 bg-[#222] border border-[#555] text-white text-xs px-1"
+                                    placeholder="Type here..."
+                                />
+                                <button
+                                    type="submit"
+                                    class="steam-btn px-2 text-xs"
+                                >
+                                    Submit
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- === RIGHT SIDEBAR (STATS & CONSOLE) === -->
+            <div class="md:col-span-3 space-y-4">
+                <!-- FPS / STATS -->
+                <div
+                    class="bg-transparent text-right font-mono text-[#d5cc6e] text-lg font-bold pr-2"
+                    style="text-shadow: 1px 1px 0 #000"
+                >
+                    <span id="fps-counter">99</span> FPS
+                </div>
+
+                <!-- CONSOLE WINDOW -->
+                <div class="vgui-panel flex flex-col h-96">
+                    <div class="vgui-header">
+                        <span>Console</span>
+                        <div class="w-3 h-3 bg-red-800"></div>
+                    </div>
+                    <div
+                        class="flex-1 bg-[#222] p-1 font-mono text-[10px] overflow-y-auto console-text"
+                        id="console-output"
+                    >
+                        <div>Warning: connection problem detected.</div>
+                        <div>Downloading resources...</div>
+                        <div class="text-gray-500">sv_gravity 800</div>
+                        <div class="text-gray-500">mp_startmoney 800</div>
+                        <div class="text-white">Initializing renderer...</div>
+                        <br />
+                        <div class="text-[#d5cc6e]">] version</div>
+                        <div class="text-white">
+                            Protocol version 48<br />Exe version 1.1.2.7
+                            (cstrike)
+                        </div>
+                    </div>
+                    <div class="p-1 bg-[#3e4637] flex gap-1">
+                        <input
+                            type="text"
+                            id="console-input"
+                            class="w-full bg-[#222] border border-[#555] text-[#d5cc6e] px-1 font-mono text-[10px]"
+                            placeholder="Enter command..."
+                        />
+                        <button
+                            onclick="runCommand()"
+                            class="steam-btn text-[10px] px-2"
+                        >
+                            Submit
+                        </button>
+                    </div>
+                </div>
+
+                <!-- MUSIC PLAYER (VGUI STYLE) -->
+                <div class="vgui-panel">
+                    <div class="vgui-header">Media Player</div>
+                    <div class="p-2 bg-[#2a2e25] text-center space-y-2">
+                        <div
+                            class="bg-black border border-gray-600 h-6 flex items-center justify-center text-[10px] text-[#0f0] font-mono"
+                        >
+                            <span
+                                class="marquee-container w-full h-full bg-transparent border-none text-[#0f0]"
+                            >
+                                <!-- UPDATE FILE NAME HERE -->
+                                <span class="marquee-content"
+                                    >Now Playing: cs1.6-theme.mp3 -
+                                    128kbps</span
+                                >
+                            </span>
+                        </div>
+                        <div class="flex justify-center gap-1">
+                            <button
+                                onclick="toggleMusic()"
+                                id="play-btn"
+                                class="steam-btn w-8 text-[9px]"
+                            >
+                                ►
+                            </button>
+                            <button
+                                onclick="stopMusic()"
+                                class="steam-btn w-8 text-[9px]"
+                            >
+                                ■
+                            </button>
+                            <!-- Volume Control (optional visual) -->
+                            <div class="flex items-center gap-1 ml-1">
+                                <div class="w-1 h-3 bg-[#0f0]"></div>
+                                <div class="w-1 h-3 bg-[#0f0]"></div>
+                                <div class="w-1 h-3 bg-[#0f0]"></div>
+                                <div class="w-1 h-3 bg-[#333]"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Hidden Audio Element -->
+                    <!-- Make sure your file is named 'song.mp3' and is inside the 'assets' folder -->
+                    <audio id="audio-player" loop>
+                        <source
+                            src="assets/songs/cs1.6-theme.mp3"
+                            type="audio/mpeg"
+                        />
+                        <source src="assets/song.ogg" type="audio/ogg" />
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+
+                <div class="text-center text-[10px] text-[#5e6d4b]">
+                    &copy; Valve Corporation. All rights reserved.<br />
+                    Just kidding, it's a fan site.
+                </div>
+            </div>
+        </div>
+
+        <!-- SCANLINES (Subtle) -->
+        <div
+            class="fixed inset-0 pointer-events-none opacity-10 bg-[url('https://www.transparenttextures.com/patterns/dark-matter.png')]"
+        ></div>
+
+        <!-- Gunshot Audio (Hidden) -->
+        <audio id="gunshot-sound" preload="auto">
+            <!-- Make sure to add this file! -->
+            <source src="assets/songs/ak.mp3" type="audio/mpeg" />
+            <source src="assets/songs/ak.ogg" type="audio/wav" />
+        </audio>
+
+        <script>
+            // 1. Navigation
+            function navigate(tabId) {
+                document
+                    .querySelectorAll(".tab-content")
+                    .forEach((el) => el.classList.remove("active"));
+                document
+                    .getElementById(`content-${tabId}`)
+                    .classList.add("active");
+
+                document
+                    .querySelectorAll(".steam-btn")
+                    .forEach((btn) => btn.classList.remove("active"));
+                document.getElementById(`btn-${tabId}`).classList.add("active");
+
+                // Sound effect sim
+                playSound("click");
+            }
+
+            // 2. Console Logic
+            function runCommand() {
+                const input = document.getElementById("console-input");
+                const output = document.getElementById("console-output");
+                const cmd = input.value.trim();
+
+                if (cmd) {
+                    const newLine = document.createElement("div");
+                    newLine.innerHTML = `<span class="text-[#d5cc6e]">] ${cmd}</span>`;
+                    output.appendChild(newLine);
+
+                    // Sim response
+                    setTimeout(() => {
+                        const resp = document.createElement("div");
+                        resp.className = "text-white";
+                        if (cmd === "quit" || cmd === "exit")
+                            resp.innerText =
+                                "Cannot quit. You are trapped in the 90s.";
+                        else if (cmd === "clear") output.innerHTML = "";
+                        else resp.innerText = `Unknown command: ${cmd}`;
+
+                        if (cmd !== "clear") output.appendChild(resp);
+                        output.scrollTop = output.scrollHeight;
+                    }, 200);
+
+                    input.value = "";
+                }
+            }
+
+            // 3. FPS Counter Sim
+            setInterval(() => {
+                const fps = Math.floor(Math.random() * (101 - 95) + 95);
+                document.getElementById("fps-counter").innerText = fps;
+            }, 500);
+
+            // 4. Guestbook
+            function handleGuestbook(e) {
+                e.preventDefault();
+                alert("Chat message sent to server.");
+                e.target.reset();
+            }
+
+            // 5. Audio Logic
+            const audio = document.getElementById("audio-player");
+            const playBtn = document.getElementById("play-btn");
+            let isPlaying = false;
+
+            function toggleMusic() {
+                if (isPlaying) {
+                    audio.pause();
+                    playBtn.innerText = "►";
+                    isPlaying = false;
+                } else {
+                    audio
+                        .play()
+                        .catch((e) =>
+                            console.log(
+                                "Audio play failed (user interaction needed):",
+                                e,
+                            ),
+                        );
+                    playBtn.innerText = "II";
+                    isPlaying = true;
+                }
+            }
+
+            function stopMusic() {
+                audio.pause();
+                audio.currentTime = 0;
+                playBtn.innerText = "►";
+                isPlaying = false;
+            }
+
+            function playSound(type) {
+                // Use the actual gunshot sound
+                const clickAudio = document.getElementById("gunshot-sound");
+                if (clickAudio) {
+                    const soundClone = clickAudio.cloneNode();
+                    soundClone.volume = 0.2;
+                    soundClone.play().catch(() => {});
+                }
+            }
+
+            // --- GLOBAL GUNSHOT FX ---
+            document.addEventListener("click", function (e) {
+                // 1. Play Sound (Clone node allows rapid fire/overlapping sounds)
+                const gunAudio = document.getElementById("gunshot-sound");
+                if (gunAudio) {
+                    const soundClone = gunAudio.cloneNode();
+                    soundClone.volume = 0.2; // Volume low to not be annoying
+                    soundClone.play().catch(() => {});
+                }
+
+                // 2. Visual Bullet Hole
+                const hole = document.createElement("div");
+                hole.className = "bullet-hole";
+                // Center the hit
+                hole.style.left = e.pageX - 3 + "px";
+                hole.style.top = e.pageY - 3 + "px";
+                document.body.appendChild(hole);
+
+                // Cleanup DOM after animation
+                setTimeout(() => {
+                    hole.remove();
+                }, 3000);
+            });
+
+            // Init
+            document
+                .getElementById("console-input")
+                .addEventListener("keypress", function (e) {
+                    if (e.key === "Enter") runCommand();
+                });
+        </script>
+    </body>
+</html>
