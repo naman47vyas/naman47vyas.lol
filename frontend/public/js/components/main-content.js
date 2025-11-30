@@ -2,89 +2,153 @@
 
 const MainContent = {
   tabs: {
-    home: {
-      title: "Counter-Strike Source - /home",
+    blog: {
+      title: "Counter-Strike Source - /blog",
       content: `
-                <div class="border border-[#d5cc6e] bg-[#2a2e25] p-3">
+                <div class="border border-[#d5cc6e] bg-[#2a2e25] p-3 mb-4">
                     <h3 class="font-bold text-[#d5cc6e] text-sm flex items-center gap-2">
-                        <span class="animate-pulse">⚠️</span> SERVER MESSAGE OF THE DAY
+                        <span>📝</span> BLOG POSTS
                     </h3>
                     <div class="h-px bg-[#4b5844] my-2"></div>
-                    <p class="text-[11px]">
-                        This is the home of Naman Vyas, on the internet. Please be advised, this is underconstruction.<br />
-                        Latest update: 11/26/2025 - Fixed CSS rendering bugs.
+                    <p class="text-[10px] text-gray-400">
+                        Technical writings, thoughts, and experiences from the trenches.
                     </p>
                 </div>
-
-                <div class="text-center py-8">
-                    <h1 class="text-4xl font-black text-[#5e6d4b] tracking-tighter" style="text-shadow: 2px 2px 0px #000">
-                        WELCOME TO THE SERVER
-                    </h1>
-                    <div class="mt-2 text-[#d5cc6e] font-mono text-xs">
-                        Map: <span class="text-white">de_dust2</span> |
-                        Players: <span class="text-white">1/32</span> |
-                        Ping: <span class="text-white">5ms</span>
-                    </div>
-                </div>
-
-                <div class="space-y-2">
-                    <div class="bg-[#2d3326] p-2 border border-[#3e4637]">
-                        <div class="text-[#99ccff] font-bold text-xs mb-1">Update #42</div>
-                        <p class="text-[10px] text-gray-300">
-                            Added support for new Half-Life 3 rumors. Still unconfirmed.
-                        </p>
-                    </div>
-                    <div class="bg-[#2d3326] p-2 border border-[#3e4637]">
-                        <div class="text-[#99ccff] font-bold text-xs mb-1">Config Loaded</div>
-                        <p class="text-[10px] text-gray-300">
-                            autoexec.cfg executed successfully.
-                        </p>
-                    </div>
-                </div>
-            `,
+                `,
     },
     about: {
       title: "Counter-Strike Source - /about",
       content: `
-                <h2 class="text-lg font-bold text-[#d5cc6e] mb-4 border-b border-[#4b5844] pb-1">
-                    Player_Stats
-                </h2>
-                <div class="flex gap-4">
-                    <div class="w-32 h-40 bg-black border border-gray-600 flex items-center justify-center">
-                        <span class="text-[#d5cc6e] font-mono text-center text-xs">Model:<br />gordon.mdl</span>
-                    </div>
-                    <div class="flex-1 space-y-2 font-mono text-xs">
-                        <div class="flex border-b border-[#3e4637] pb-1">
-                            <span class="w-24 text-gray-500">Name:</span>
-                            <span class="text-white">Admin</span>
-                        </div>
-                        <div class="flex border-b border-[#3e4637] pb-1">
-                            <span class="w-24 text-gray-500">Class:</span>
-                            <span class="text-white">Web Developer</span>
-                        </div>
-                        <div class="flex border-b border-[#3e4637] pb-1">
-                            <span class="w-24 text-gray-500">Weapon:</span>
-                            <span class="text-white">Keyboard + Mouse</span>
-                        </div>
-                        <div class="bg-[#2a2e25] p-2 mt-4 text-[10px] border border-[#d5cc6e] text-[#d5cc6e]">
-                            "I grew up on LAN parties and CRT monitors. This site is a tribute to the golden age of PC gaming."
-                        </div>
+            <h2 class="text-lg font-bold text-[#d5cc6e] mb-4 border-b border-[#4b5844] pb-1">
+                Player_Stats
+            </h2>
+
+
+            <div class="flex gap-4 mb-6">
+                <div class="w-32 h-40 bg-black border border-gray-600 relative overflow-hidden">
+                    <img src="assets/images/FvTDdrZX0AENGZb.jpeg" alt="Player Model" class="w-full h-full object-cover opacity-90" />
+                    <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-80 text-center py-1">
+                        <span class="text-[#d5cc6e] font-mono text-[9px]">engineer.mdl</span>
                     </div>
                 </div>
-            `,
+                <div class="flex-1 space-y-2 font-mono text-xs">
+                    <div class="flex border-b border-[#3e4637] pb-1">
+                        <span class="w-32 text-gray-500">Name:</span>
+                        <span class="text-white">Naman Vyas</span>
+                    </div>
+                    <div class="flex border-b border-[#3e4637] pb-1">
+                        <span class="w-32 text-gray-500">Class:</span>
+                        <span class="text-white">Software Engineer</span>
+                    </div>
+                    <div class="flex border-b border-[#3e4637] pb-1">
+                        <span class="w-32 text-gray-500">Current Server:</span>
+                        <span class="text-white">Middleware Labs (Agent Team)</span>
+                    </div>
+                    <div class="flex border-b border-[#3e4637] pb-1">
+                        <span class="w-32 text-gray-500">Primary Weapons:</span>
+                        <span class="text-white">Go, Python</span>
+                    </div>
+                    <div class="flex border-b border-[#3e4637] pb-1">
+                        <span class="w-32 text-gray-500">Secondary:</span>
+                        <span class="text-white">Bash, SQL</span>
+                    </div>
+                    <div class="flex border-b border-[#3e4637] pb-1">
+                        <span class="w-32 text-gray-500">Experience:</span>
+                        <span class="text-white">4+ Years</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Skills Section -->
+            <div class="mb-6 bg-[#2a2e25] border border-[#3e4637] p-3">
+                <h3 class="text-[#d5cc6e] font-bold text-xs mb-2 border-b border-[#4b5844] pb-1">
+                    [ LOADOUT / TECH STACK ]
+                </h3>
+                <div class="space-y-2 text-[10px] font-mono">
+                    <div>
+                        <span class="text-gray-400">Languages:</span>
+                        <span class="text-white ml-2">Go • Python • Bash • SQL</span>
+                    </div>
+                    <div>
+                        <span class="text-gray-400">Frameworks:</span>
+                        <span class="text-white ml-2">OpenTelemetry • FastAPI • Flask • SQLAlchemy</span>
+                    </div>
+                    <div>
+                        <span class="text-gray-400">Databases:</span>
+                        <span class="text-white ml-2">PostgreSQL • MySQL • Redis • Elasticsearch</span>
+                    </div>
+                    <div>
+                        <span class="text-gray-400">Tools:</span>
+                        <span class="text-white ml-2">Git • GitHub Actions • Docker • Nginx • RabbitMQ</span>
+                    </div>
+                    <div>
+                        <span class="text-gray-400">Specialties:</span>
+                        <span class="text-white ml-2">Backend Dev • Testing • ML • Observability</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Achievements -->
+            <div class="mb-4 bg-[#2d3326] border border-[#3e4637] p-3">
+                <h3 class="text-[#99ccff] font-bold text-xs mb-2">
+                    [ RECENT KILLS / ACHIEVEMENTS ]
+                </h3>
+                <div class="space-y-2 text-[10px]">
+                    <div class="text-gray-300">
+                        <span class="text-[#d5cc6e]">»</span> Increased telemetry cardinality by 100% with InnoParser for MySQL InnoDB logs
+                    </div>
+                    <div class="text-gray-300">
+                        <span class="text-[#d5cc6e]">»</span> Built 7+ integrations for middleware-agent (MySQL, PostgreSQL, Nginx, RabbitMQ, etc.)
+                    </div>
+                    <div class="text-gray-300">
+                        <span class="text-[#d5cc6e]">»</span> Architected type-safe config system replacing runtime uncertainties with compile-time guarantees
+                    </div>
+                    <div class="text-gray-300">
+                        <span class="text-[#d5cc6e]">»</span> Enriched APM with sub-millisecond stack traces powering LLM-driven debugging
+                    </div>
+                    <div class="text-gray-300">
+                        <span class="text-[#d5cc6e]">»</span> Implemented FAISS similarity search <50ms for 100K+ images at Infosys
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="bg-[#2a2e25] p-3 border border-[#d5cc6e]">
+                <div class="text-[10px] font-mono space-y-1">
+                    <div class="text-[#d5cc6e] font-bold mb-2">[ CONNECT / CONTACT ]</div>
+                    <div class="text-gray-300">
+                        <span class="text-gray-500">Email:</span>
+                        <a href="mailto:writetonamanvyas@gmail.com" class="text-white ml-2 hover:text-[#d5cc6e]">writetonamanvyas@gmail.com</a>
+                    </div>
+                    <div class="text-gray-300">
+                        <span class="text-gray-500">GitHub:</span>
+                        <a href="https://github.com/naman47vyas" target="_blank" class="text-white ml-2 hover:text-[#d5cc6e]">github.com/naman47vyas</a>
+                    </div>
+                    <div class="text-gray-300">
+                        <span class="text-gray-500">LinkedIn:</span>
+                        <a href="https://linkedin.com/in/vyasn30" target="_blank" class="text-white ml-2 hover:text-[#d5cc6e]">linkedin.com/in/vyasn30</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Education Footer -->
+            <div class="mt-4 text-center text-[9px] text-gray-500 font-mono">
+                B.E. Computer Science • Gujarat Technological University '21 • CGPA 8.5
+            </div>
+        `,
     },
     gallery: {
       title: "Counter-Strike Source - /gallery",
       content: `
                 <div class="bg-black p-1 border border-gray-600 mb-2 text-center text-xs text-gray-400">
-                    Viewing screenshots/ (6 files)
+                    Viewing photos/ (6 files)
                 </div>
                 <div class="grid grid-cols-2 gap-2">
                     ${Array.from(
                       { length: 4 },
                       (_, i) => `
                         <div class="aspect-video bg-[#111] border border-[#333] flex flex-col items-center justify-center group cursor-pointer hover:border-[#d5cc6e]">
-                            <span class="text-xs text-gray-500 group-hover:text-[#d5cc6e]">de_map0${i + 1}.jpg</span>
+                            <span class="text-xs text-gray-500 group-hover:text-[#d5cc6e]">photo_0${i + 1}.jpg</span>
                         </div>
                     `,
                     ).join("")}
@@ -103,20 +167,20 @@ const MainContent = {
                         </tr>
                     </thead>
                     <tbody class="font-mono text-gray-300">
-                        <tr class="hover:bg-[#4b5844] cursor-pointer" onclick="window.open('#', '_blank')">
-                            <td class="p-1 border border-[#222]">Valve Software</td>
-                            <td class="p-1 border border-[#222]">www.valvesoftware.com</td>
+                        <tr class="hover:bg-[#4b5844] cursor-pointer" onclick="window.open('https://github.com/naman47vyas', '_blank')">
+                            <td class="p-1 border border-[#222]">GitHub</td>
+                            <td class="p-1 border border-[#222]">github.com/naman47vyas</td>
                             <td class="p-1 border border-[#222]">5ms</td>
                         </tr>
-                        <tr class="hover:bg-[#4b5844] cursor-pointer" onclick="window.open('#', '_blank')">
-                            <td class="p-1 border border-[#222]">Steam Powered</td>
-                            <td class="p-1 border border-[#222]">store.steampowered.com</td>
+                        <tr class="hover:bg-[#4b5844] cursor-pointer" onclick="window.open('https://linkedin.com/in/vyasn30', '_blank')">
+                            <td class="p-1 border border-[#222]">LinkedIn</td>
+                            <td class="p-1 border border-[#222]">linkedin.com/in/vyasn30</td>
                             <td class="p-1 border border-[#222]">12ms</td>
                         </tr>
-                        <tr class="hover:bg-[#4b5844] cursor-pointer" onclick="window.open('#', '_blank')">
-                            <td class="p-1 border border-[#222]">GameBanana</td>
-                            <td class="p-1 border border-[#222]">css_skins</td>
-                            <td class="p-1 border border-[#222]">45ms</td>
+                        <tr class="hover:bg-[#4b5844] cursor-pointer" onclick="window.open('mailto:writetonamanvyas@gmail.com', '_blank')">
+                            <td class="p-1 border border-[#222]">Email</td>
+                            <td class="p-1 border border-[#222]">writetonamanvyas@gmail.com</td>
+                            <td class="p-1 border border-[#222]">8ms</td>
                         </tr>
                     </tbody>
                 </table>
@@ -169,7 +233,7 @@ const MainContent = {
             <!-- MAIN CONTENT WINDOW -->
             <div class="vgui-panel flex-1 min-h-[500px] flex flex-col">
                 <div class="vgui-header">
-                    <span id="window-title">Counter-Strike Source - /home</span>
+                    <span id="window-title">Counter-Strike Source - /blog</span>
                     <div class="flex gap-1">
                         <div class="w-3 h-3 border border-gray-500"></div>
                         <div class="w-3 h-3 border border-gray-500 bg-gray-600"></div>
@@ -190,7 +254,7 @@ const MainContent = {
     return Object.entries(this.tabs)
       .map(
         ([tabId, tab]) => `
-            <div id="content-${tabId}" class="tab-content ${tabId === "home" ? "active" : ""} space-y-6">
+            <div id="content-${tabId}" class="tab-content ${tabId === "blog" ? "active" : ""} space-y-6">
                 ${tab.content}
             </div>
         `,
