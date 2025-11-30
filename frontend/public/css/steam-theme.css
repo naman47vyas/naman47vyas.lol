@@ -1,0 +1,205 @@
+/* --- STEAM v1 / VGUI AESTHETIC --- */
+
+:root {
+    --steam-olive-light: #5e6d4b;
+    --steam-olive-main: #4b5844;
+    --steam-olive-dark: #3e4637;
+    --steam-bg-dark: #2a2e25;
+    --steam-text: #c0c6b1;
+    --steam-text-yellow: #d5cc6e;
+    --steam-border-light: #6f7d5e;
+    --steam-border-dark: #252920;
+    --console-bg: #000000d0;
+}
+
+body {
+    background-color: var(--steam-olive-dark);
+    color: var(--steam-text);
+    font-family: "Verdana", sans-serif;
+    font-size: 11px;
+    cursor: crosshair;
+    overflow-x: hidden;
+}
+
+/* --- VGUI PANEL STYLES --- */
+.vgui-panel {
+    background-color: var(--steam-olive-main);
+    border: 1px solid;
+    border-color: var(--steam-border-light) var(--steam-border-dark)
+        var(--steam-border-dark) var(--steam-border-light);
+    padding: 2px;
+}
+
+.vgui-inset {
+    background-color: var(--steam-bg-dark);
+    border: 1px solid;
+    border-color: var(--steam-border-dark) var(--steam-border-light)
+        var(--steam-border-light) var(--steam-border-dark);
+}
+
+.vgui-header {
+    background-color: #353b2f;
+    color: #d1cfcd;
+    padding: 4px 8px;
+    font-weight: bold;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--steam-border-dark);
+}
+
+/* --- BUTTONS (STEAM STYLE) --- */
+.steam-btn {
+    background-color: #465139;
+    color: #d8d8d8;
+    border: 1px solid;
+    border-color: #6a7857 #2d3326 #2d3326 #6a7857;
+    padding: 4px 12px;
+    font-family: "Verdana", sans-serif;
+    font-size: 11px;
+    cursor: pointer;
+    text-align: left;
+    transition: none;
+}
+
+.steam-btn:hover {
+    background-color: #556145;
+    color: white;
+}
+
+.steam-btn:active,
+.steam-btn.active {
+    background-color: #38402e;
+    border-color: #2d3326 #6a7857 #6a7857 #2d3326;
+    color: var(--steam-text-yellow);
+}
+
+/* --- CONSOLE LOG STYLE --- */
+.console-text {
+    font-family: "Lucida Console", "Courier New", monospace;
+    color: var(--steam-text-yellow);
+    text-shadow: 1px 1px 0 #000;
+}
+
+/* --- SCROLLBARS --- */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--steam-bg-dark);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--steam-olive-light);
+    border: 1px solid var(--steam-bg-dark);
+}
+
+/* --- TABS --- */
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* --- FORM INPUTS --- */
+input,
+textarea {
+    background-color: #242820;
+    border: 1px solid #666;
+    color: #ddd;
+    font-family: "Verdana", sans-serif;
+    font-size: 11px;
+}
+
+input:focus,
+textarea:focus {
+    outline: 1px solid var(--steam-text-yellow);
+    border-color: var(--steam-text-yellow);
+}
+
+/* --- ANIMATIONS --- */
+.blink {
+    animation: blink-anim 1s step-end infinite;
+}
+
+@keyframes blink-anim {
+    50% {
+        opacity: 0;
+    }
+}
+
+/* --- BULLET HOLE EFFECT --- */
+.bullet-hole {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background-color: #1a1a1a;
+    border: 1px solid #555;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    box-shadow:
+        0 0 2px rgba(255, 255, 255, 0.3),
+        inset 0 0 2px #000;
+    animation: fadeOut 3s forwards;
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 0.8;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(1.5);
+    }
+}
+
+/* --- INFINITE MARQUEE ANIMATION --- */
+.marquee-wrapper {
+    display: flex;
+    overflow: hidden;
+    width: 100%;
+}
+
+.marquee-text {
+    white-space: nowrap;
+    animation: scroll-left 15s linear infinite;
+    flex-shrink: 0;
+    padding-right: 2rem;
+}
+
+@keyframes scroll-left {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+/* --- OLD MARQUEE (Keeping for music player compatibility) --- */
+.marquee-container {
+    overflow: hidden;
+    white-space: nowrap;
+    display: block;
+}
+
+.marquee-content {
+    display: inline-block;
+    animation: marquee 15s linear infinite;
+    padding-left: 100%;
+}
+
+@keyframes marquee {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
