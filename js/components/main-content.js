@@ -259,7 +259,7 @@ const MainContent = {
     return Object.entries(this.tabs)
       .map(
         ([tabId, tab]) => `
-            <div id="content-${tabId}" class="tab-content ${tabId === "blog" ? "active" : ""} space-y-6">
+            <div id="content-${tabId}" class="tab-content ${tabId === "about" ? "active" : ""} space-y-6">
                 ${tab.content}
             </div>
         `,
