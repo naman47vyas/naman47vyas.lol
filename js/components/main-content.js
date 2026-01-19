@@ -59,7 +59,6 @@ const MainContent = {
                 </div>
             </div>
 
-            <!-- Skills Section -->
             <div class="mb-6 bg-[#2a2e25] border border-[#3e4637] p-3">
                 <h3 class="text-[#d5cc6e] font-bold text-xs mb-2 border-b border-[#4b5844] pb-1">
                     [ LOADOUT / TECH STACK ]
@@ -88,7 +87,6 @@ const MainContent = {
                 </div>
             </div>
 
-            <!-- Recent Achievements -->
             <div class="mb-4 bg-[#2d3326] border border-[#3e4637] p-3">
                 <h3 class="text-[#99ccff] font-bold text-xs mb-2">
                     [ RECENT KILLS / ACHIEVEMENTS ]
@@ -112,7 +110,6 @@ const MainContent = {
                 </div>
             </div>
 
-            <!-- Contact Info -->
             <div class="bg-[#2a2e25] p-3 border border-[#d5cc6e]">
                 <div class="text-[10px] font-mono space-y-1">
                     <div class="text-[#d5cc6e] font-bold mb-2">[ CONNECT / CONTACT ]</div>
@@ -131,7 +128,6 @@ const MainContent = {
                 </div>
             </div>
 
-            <!-- Education Footer -->
             <div class="mt-4 text-center text-[9px] text-gray-500 font-mono">
                 B.E. Computer Science • Gujarat Technological University '21 • CGPA 8.5
             </div>
@@ -141,20 +137,23 @@ const MainContent = {
       title: "Counter-Strike Source - /gallery",
       content: `
                 <div class="bg-black p-1 border border-gray-600 mb-2 text-center text-xs text-gray-400">
-                    Viewing photos/ (6 files)
+                    Viewing photos/ (1 files)
                 </div>
                 <div class="grid grid-cols-2 gap-2">
                     ${Array.from(
-                      { length: 4 },
+                      { length: 1 },
                       (_, i) => `
-                        <div class="aspect-video bg-[#111] border border-[#333] flex flex-col items-center justify-center group cursor-pointer hover:border-[#d5cc6e]">
-                            <span class="text-xs text-gray-500 group-hover:text-[#d5cc6e]">photo_0${i + 1}.jpg</span>
-                        </div>
+                      <div
+                        onclick="openModal('assets/images/gallery/IMG20260115184423.jpg')"
+                        class="aspect-video bg-[#111] border border-[#333] flex flex-col items-center justify-center group cursor-pointer hover:border-[#d5cc6e]">
+                          <img src="assets/images/gallery/IMG20260115184423.jpg" alt="Photo 1" class="w-full h-full object-cover group-hover:scale-105 transition-transform" />
+                      </div>
                     `,
                     ).join("")}
                 </div>
             `,
     },
+
     links: {
       title: "Counter-Strike Source - /links",
       content: `
@@ -224,13 +223,11 @@ const MainContent = {
     }
 
     container.innerHTML = `
-            <!-- CONSOLE HEADER -->
             <div class="bg-[#2a2e25] border-t-2 border-[#4b5844] p-2 font-mono text-xs text-[#d5cc6e]">
                 ] connect <span class="text-white">naman47vyas.lol</span><br />
                 <span class="text-gray-400">Connection accepted.</span>
             </div>
 
-            <!-- MAIN CONTENT WINDOW -->
             <div class="vgui-panel flex-1 min-h-[500px] flex flex-col">
                 <div class="vgui-header">
                     <span id="window-title">Counter-Strike Source - /blog</span>
@@ -240,9 +237,17 @@ const MainContent = {
                     </div>
                 </div>
 
-                <!-- CONTENT BODY -->
                 <div class="vgui-inset flex-1 m-2 p-4 overflow-y-auto text-[#d1cfcd]">
                     ${this.renderAllTabs()}
+                </div>
+            </div>
+
+            <div id="gallery-modal" onclick="closeModal()" class="hidden fixed inset-0 z-50 bg-black bg-opacity-90 flex items-center justify-center p-4">
+                <div class="relative max-w-4xl max-h-[90vh]">
+                     <img id="modal-image" src="" class="max-w-full max-h-[85vh] border-2 border-[#d5cc6e] shadow-[0_0_20px_rgba(213,204,110,0.2)]" onclick="event.stopPropagation()" />
+                     <div class="text-center mt-2 text-[#d5cc6e] font-mono text-xs">
+                        [ CLICK BACKGROUND TO CLOSE ]
+                     </div>
                 </div>
             </div>
         `;
@@ -267,6 +272,43 @@ const MainContent = {
     this.render();
   },
 };
+
+// Guestbook handler
+function handleGuestbook(e) {
+  e.preventDefault();
+  alert("Chat message sent to server.");
+  e.target.reset();
+}
+
+// Modal Handlers
+function openModal(imageSrc) {
+  const modal = document.getElementById("gallery-modal");
+  const modalImg = document.getElementById("modal-image");
+  if (modal && modalImg) {
+    modalImg.src = imageSrc;
+    modal.classList.remove("hidden");
+  }
+}
+
+function closeModal() {
+  const modal = document.getElementById("gallery-modal");
+  if (modal) {
+    modal.classList.add("hidden");
+    // clear src to stop video/large loading if applicable, or just reset
+    setTimeout(() => {
+      document.getElementById("modal-image").src = "";
+    }, 200);
+  }
+}
+
+// Initialize immediately when this script loads
+(function () {
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", () => MainContent.init());
+  } else {
+    MainContent.init();
+  }
+})();
 
 // Guestbook handler (global function for onclick)
 function handleGuestbook(e) {
