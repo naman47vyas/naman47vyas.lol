@@ -2,6 +2,7 @@
 layout: post
 title: "How to Write a Custom OpenTelemetry Exporter"
 date: 2025-02-03
+permalink: /blog/creating-otel-exporter/
 ---
 # How to write a custom exporter? Example: Dummy Console Logger exporter.
 
