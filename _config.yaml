@@ -1,0 +1,18 @@
+title: Naman Vyas
+description: Backend Engineer | Go, Python, Observability
+url: "https://naman47vyas.lol"
+baseurl: ""
+
+# Permalinks
+permalink: /blog/:title/
+
+# Markdown
+markdown: kramdown
+highlighter: rouge
+
+# Build settings
+exclude:
+  - backend
+  - node_modules
+  - README.md
+  - CNAME

@@ -15,7 +15,8 @@ const MainContent = {
                     </p>
                 </div>
 
-                <a href="https://naman47vyas.github.io/blog/creating-otel-exporter" target="_blank" class="block">
+
+                <a href="https://naman47vyas.lol/blog/creating-otel-exporter" target="_blank" class="block">
                     <div class="bg-[#2d3326] p-3 border border-[#3e4637] hover:border-[#d5cc6e] transition-colors cursor-pointer">
                         <div class="flex justify-between items-start mb-2">
                             <h4 class="text-[#99ccff] font-bold text-sm">Writing a Custom OpenTelemetry Exporter</h4>
