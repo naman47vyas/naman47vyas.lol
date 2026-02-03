@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>{{ page.title }}</title>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.2.0/github-markdown.min.css"
+        />
+        <style>
+            /* Center the content and add GitHub-like spacing */
+            .markdown-body {
+                box-sizing: border-box;
+                min-width: 200px;
+                max-width: 980px;
+                margin: 0 auto;
+                padding: 45px;
+            }
+
+            @media (max-width: 767px) {
+                .markdown-body {
+                    padding: 15px;
+                }
+            }
+
+            /* Optional: Add a simple back link */
+            .back-link {
+                display: block;
+                margin-bottom: 20px;
+                font-family:
+                    -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica,
+                    Arial, sans-serif;
+                text-decoration: none;
+                color: #0969da;
+            }
+        </style>
+    </head>
+    <body>
+        <article class="markdown-body">
+            <a href="/" class="back-link">← Back to Home</a>
+            <h1>{{ page.title }}</h1>
+            <p><em>{{ page.date | date: "%B %d, %Y" }}</em></p>
+
+            {{ content }}
+        </article>
+    </body>
+</html>
