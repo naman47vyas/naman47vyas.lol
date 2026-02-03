@@ -53,10 +53,10 @@ const SidebarLeft = {
                     </button>
                 </div>
                 <div class="p-1 space-y-1">
-                    <button onclick="navigate('blog')" id="btn-blog" class="steam-btn w-full active">
+                    <button onclick="navigate('blog')" id="btn-blog" class="steam-btn w-full">
                         Blog Posts
                     </button>
-                    <button onclick="navigate('about')" id="btn-about" class="steam-btn w-full">
+                    <button onclick="navigate('about')" id="btn-about" class="steam-btn w-full active">
                         About Me
                     </button>
                     <button onclick="navigate('gallery')" id="btn-gallery" class="steam-btn w-full">
