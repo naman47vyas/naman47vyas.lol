@@ -11,7 +11,7 @@ We cannot store every trace. We cannot also loose interesting traces either. A t
 Depending on at what point in time the decision to store of drop a trace: there are two widely used approaches for sampling i.e. HEAD and TAIL sampling.
 
 
-## Head Sampling:
+### Head Sampling:
 
 The decision take place upfront, usually at the root span, before we know anything about what the trace is gonna be like.
 
