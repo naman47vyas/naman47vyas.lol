@@ -16,6 +16,23 @@ const MainContent = {
                 </div>
 
 
+                <a href="https://naman47vyas.lol/blog/otel-tail-sampling/" target="_blank" class="block">
+                    <div class="bg-[#2d3326] p-3 border border-[#3e4637] hover:border-[#d5cc6e] transition-colors cursor-pointer">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="text-[#99ccff] font-bold text-sm">OTel Tail Sampling: From Single Collector to Multi-Layer Architecture</h4>
+                            <span class="text-[9px] text-gray-500">2026-03-31</span>
+                        </div>
+                        <p class="text-[10px] text-gray-300 mb-2">
+                            Head vs tail sampling, how the tail sampling processor works internally, sizing it correctly, and scaling to a two-layer architecture in Kubernetes.
+                        </p>
+                        <div class="flex gap-2 flex-wrap">
+                            <span class="text-[9px] bg-[#3e4637] px-2 py-1 text-[#d5cc6e]">OpenTelemetry</span>
+                            <span class="text-[9px] bg-[#3e4637] px-2 py-1 text-[#d5cc6e]">Observability</span>
+                            <span class="text-[9px] bg-[#3e4637] px-2 py-1 text-[#d5cc6e]">Kubernetes</span>
+                        </div>
+                    </div>
+                </a>
+
                 <a href="https://naman47vyas.lol/blog/creating-otel-exporter" target="_blank" class="block">
                     <div class="bg-[#2d3326] p-3 border border-[#3e4637] hover:border-[#d5cc6e] transition-colors cursor-pointer">
                         <div class="flex justify-between items-start mb-2">
