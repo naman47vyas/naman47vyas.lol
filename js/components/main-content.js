@@ -77,7 +77,7 @@ const MainContent = {
                     </div>
                     <div class="flex border-b border-[#3e4637] pb-1">
                         <span class="w-32 text-gray-500">Current Server:</span>
-                        <span class="text-white">Middleware Labs (Agent Team)</span>
+                        <span class="text-white">Middleware Labs (Agent, APM &amp; Alerts team)</span>
                     </div>
                     <div class="flex border-b border-[#3e4637] pb-1">
                         <span class="w-32 text-gray-500">Primary Weapons:</span>
@@ -89,7 +89,7 @@ const MainContent = {
                     </div>
                     <div class="flex border-b border-[#3e4637] pb-1">
                         <span class="w-32 text-gray-500">Experience:</span>
-                        <span class="text-white">4+ Years</span>
+                        <span class="text-white">5+ Years</span>
                     </div>
                 </div>
             </div>
@@ -109,15 +109,15 @@ const MainContent = {
                     </div>
                     <div>
                         <span class="text-gray-400">Databases:</span>
-                        <span class="text-white ml-2">PostgreSQL • MySQL • Redis • Elasticsearch</span>
+                        <span class="text-white ml-2">PostgreSQL • MySQL • ClickHouse • Redis • Elasticsearch</span>
                     </div>
                     <div>
                         <span class="text-gray-400">Tools:</span>
-                        <span class="text-white ml-2">Git • GitHub Actions • Docker • Nginx • RabbitMQ</span>
+                        <span class="text-white ml-2">Git • GitHub Actions • Docker • Kubernetes • Nginx • RabbitMQ</span>
                     </div>
                     <div>
                         <span class="text-gray-400">Specialties:</span>
-                        <span class="text-white ml-2">Backend Dev • Testing • ML • Observability</span>
+                        <span class="text-white ml-2">Distributed Observability • Backend Systems • Database Engineering • DevOps Automation</span>
                     </div>
                 </div>
             </div>
@@ -128,19 +128,45 @@ const MainContent = {
                 </h3>
                 <div class="space-y-2 text-[10px]">
                     <div class="text-gray-300">
-                        <span class="text-[#d5cc6e]">»</span> Increased telemetry cardinality by 100% with InnoParser for MySQL InnoDB logs
+                        <span class="text-[#d5cc6e]">»</span> Owned the Go alerting engine end to end: grouped fleet-wide breaches to end a 1M+ email fan-out, built OAuth2-secured webhooks, shipped 100+ default alert templates
                     </div>
                     <div class="text-gray-300">
-                        <span class="text-[#d5cc6e]">»</span> Built 7+ integrations for middleware-agent (MySQL, PostgreSQL, Nginx, RabbitMQ, etc.)
+                        <span class="text-[#d5cc6e]">»</span> Designed <a href="https://github.com/middleware-labs/mw-injector" target="_blank" class="text-[#99ccff] hover:text-[#d5cc6e]">mw-injector</a>: a Go library solving OTel's service-identity problem with /proc discovery and auto-instrumentation of Java / Node.js / Python / Go / Ruby / PHP
                     </div>
                     <div class="text-gray-300">
-                        <span class="text-[#d5cc6e]">»</span> Architected type-safe config system replacing runtime uncertainties with compile-time guarantees
+                        <span class="text-[#d5cc6e]">»</span> Shipped 7+ OpenTelemetry integrations (MySQL, MariaDB, PostgreSQL, Druid, Nginx, RabbitMQ, Filelog), doubling telemetry output
                     </div>
                     <div class="text-gray-300">
-                        <span class="text-[#d5cc6e]">»</span> Enriched APM with sub-millisecond stack traces powering LLM-driven debugging
+                        <span class="text-[#d5cc6e]">»</span> Enriched Java APM exceptions with stack context powering LLM-driven automatic issue resolution
                     </div>
                     <div class="text-gray-300">
-                        <span class="text-[#d5cc6e]">»</span> Implemented FAISS similarity search <50ms for 100K+ images at Infosys
+                        <span class="text-[#d5cc6e]">»</span> Built a type-safe config system for ingestion rules and InnoParser (100% more InnoDB metrics)
+                    </div>
+                    <div class="text-gray-300">
+                        <span class="text-[#d5cc6e]">»</span> FAISS similarity search under 50ms on 100K+ multi-face images at Infosys
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-4 bg-[#2d3326] border border-[#3e4637] p-3">
+                <h3 class="text-[#99ccff] font-bold text-xs mb-2">
+                    [ CUSTOM MAPS / PROJECTS ]
+                </h3>
+                <div class="space-y-2 text-[10px]">
+                    <div class="text-gray-300">
+                        <span class="text-[#d5cc6e]">»</span>
+                        <a href="https://github.com/naman47vyas/log-diff" target="_blank" class="text-[#99ccff] font-bold hover:text-[#d5cc6e]">log-diff</a>
+                        — Go CLI that diffs pre and post release logs with a custom port of the Drain clustering algorithm. Surfaces new, gone and frequency-shifted log patterns at ~850K logs/s.
+                    </div>
+                    <div class="text-gray-300">
+                        <span class="text-[#d5cc6e]">»</span>
+                        <a href="https://github.com/naman47vyas/io-programming-labs" target="_blank" class="text-[#99ccff] font-bold hover:text-[#d5cc6e]">io-programming-labs</a>
+                        — Test-driven C book on how programs talk to the outside world, from a blocking read() to io_uring.
+                    </div>
+                    <div class="text-gray-300">
+                        <span class="text-[#d5cc6e]">»</span>
+                        <a href="https://github.com/naman47vyas/telemetry-gen" target="_blank" class="text-[#99ccff] font-bold hover:text-[#d5cc6e]">telemetry-gen</a>
+                        — Synthetic OTLP generator for exercising an alert pipeline at any cardinality: breach, flap, churn and severity-wave modes.
                     </div>
                 </div>
             </div>
@@ -163,8 +189,9 @@ const MainContent = {
                 </div>
             </div>
 
-            <div class="mt-4 text-center text-[9px] text-gray-500 font-mono">
-                B.E. Computer Science • Gujarat Technological University '21 • CGPA 8.5
+            <div class="mt-4 text-center text-[9px] text-gray-500 font-mono space-y-1">
+                <div>B.E. Computer Science • Gujarat Technological University '21 • CGPA 8.5</div>
+                <div>Off-server: Motorcycling (3700+ km solo on the Killar-Kishtwar road, 14-year-old Yamaha) • Military History • Spirituality • Video Games</div>
             </div>
         `,
     },

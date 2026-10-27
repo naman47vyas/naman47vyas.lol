@@ -38,7 +38,7 @@ const SidebarLeft = {
                             <span class="text-[#d5cc6e]">Backend Dev @ middleware.io</span>
                         </div>
                         <div class="flex justify-between">
-                            <span>Time:</span> <span>3360 hrs</span>
+                            <span>Time:</span> <span id="hours-played">${this.hoursPlayed()} hrs</span>
                         </div>
                     </div>
                 </div>
@@ -82,6 +82,13 @@ const SidebarLeft = {
                 </div>
             </div>
         `;
+  },
+
+  // Hours since joining middleware.io on 27 March 2024
+  hoursPlayed() {
+    const start = new Date("2024-03-27T00:00:00+05:30");
+    const hrs = Math.floor((Date.now() - start.getTime()) / 36e5);
+    return hrs.toLocaleString("en-US");
   },
 
   renderFriendsList() {
